@@ -9,7 +9,7 @@ namespace WebAppCadeMeuJogo.Models.Entitys
         public int CategoriaId { get; set; }
         public virtual Categoria Categoria { get; set; }
 
-        public virtual IEnumerable<Emprestimo> Emprestimos { get; set; }
+        public virtual ICollection<Emprestimo> Emprestimos { get; set; }
 
         public Jogo()
         {

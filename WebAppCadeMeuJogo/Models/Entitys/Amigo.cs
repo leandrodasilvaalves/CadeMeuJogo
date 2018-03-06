@@ -6,7 +6,7 @@ namespace WebAppCadeMeuJogo.Models.Entitys
     {
         public int Apelido { get; set; }
 
-        public IEnumerable<Emprestimo> Emprestimos { get; set; }
+        public ICollection<Emprestimo> Emprestimos { get; set; }
 
         public Amigo()
         {

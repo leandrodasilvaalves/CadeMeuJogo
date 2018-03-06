@@ -11,8 +11,7 @@ namespace WebAppCadeMeuJogo.Models.Entitys
         public int AmigoId { get; set; }
         public virtual Amigo Amigo { get; set; }
 
-        public int JogoId { get; set; }
-        public virtual IEnumerable<Jogo> Jogos { get; set; }
+        public virtual ICollection<Jogo> Jogos { get; set; }
 
         public Emprestimo()
         {

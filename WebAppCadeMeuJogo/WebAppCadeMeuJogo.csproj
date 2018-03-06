@@ -206,6 +206,10 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Context\CadeMeuJogoContext.cs" />
+    <Compile Include="Models\EntityConfig\AmigoConfiguration.cs" />
+    <Compile Include="Models\EntityConfig\CategoriaConfiguration.cs" />
+    <Compile Include="Models\EntityConfig\EmprestimoConfiguration.cs" />
+    <Compile Include="Models\EntityConfig\JogoConfiguration.cs" />
     <Compile Include="Models\Entitys\Amigo.cs" />
     <Compile Include="Models\Entitys\Categoria.cs" />
     <Compile Include="Models\Entitys\ClasseBase.cs" />
@@ -277,7 +281,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\EntityConfig\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
