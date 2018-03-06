@@ -4,7 +4,7 @@ namespace WebAppCadeMeuJogo.Models.Entitys
 {
     public class Amigo : Pessoa
     {
-        public int Apelido { get; set; }
+        public string Apelido { get; set; }
 
         public ICollection<Emprestimo> Emprestimos { get; set; }
 

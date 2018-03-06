@@ -44,7 +44,15 @@ namespace WebAppCadeMeuJogo.Models.Context
             modelBuilder.Configurations.Add(new AmigoConfiguration());
             modelBuilder.Configurations.Add(new EmprestimoConfiguration());
         }
+
         public override int SaveChanges()
+        {
+            AutoAtualizarCamposDateTime();
+            AutoAtualizarCamposAtivos();
+            return base.SaveChanges();
+        }
+
+        private void AutoAtualizarCamposDateTime()
         {
             foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DataCadastro") != null))
             {
@@ -58,7 +66,17 @@ namespace WebAppCadeMeuJogo.Models.Context
                     entry.Property("DataCadastro").IsModified = false;
                 }
             }
-            return base.SaveChanges();
+        }
+
+        private void AutoAtualizarCamposAtivos()
+        {
+            foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("Ativo") != null))
+            {
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Property("Ativo").CurrentValue = Boolean.Parse("true");
+                }
+            }
         }
         
 

@@ -5,7 +5,7 @@ namespace WebAppCadeMeuJogo.Models.Entitys
 {
     public class Categoria : ClasseBase
     {
-        public int Nome { get; set; }
+        public string Nome { get; set; }
         public virtual ICollection<Jogo> Jogos { get; set; }
 
         public Categoria()
