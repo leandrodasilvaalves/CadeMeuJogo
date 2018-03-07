@@ -23,6 +23,9 @@ namespace WebAppCadeMeuJogo.Models.EntityConfig
                 .HasColumnName("nome")
                 .IsRequired();
 
+            Property(j => j.Disponivel)
+                .HasColumnName("disponivel");
+
             Property(j => j.CategoriaId)
                 .HasColumnName("categoriaId");
 

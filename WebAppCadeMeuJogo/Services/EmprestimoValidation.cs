@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using WebAppCadeMeuJogo.Interfaces.Services;
 using WebAppCadeMeuJogo.Models.Entitys;
 
@@ -15,13 +16,13 @@ namespace WebAppCadeMeuJogo.Services
                     throw new Exception("A data incio deve ser maior ou igual a data de hoje.");
 
                 if (!ValidarDataFim(emprestimo))
-                    throw new Exception("A data fim deve ser maior ou igual a data de início.");
+                    throw new Exception("A data fim deve ser maior ou igual a data de início");
 
                 if (!ValidarAmigo(emprestimo.AmigoId))
-                    throw new Exception("Informe um amigo para este empréstimo.");
+                    throw new Exception("Informe um amigo para este empréstimo");
 
-                if (!ValidarJogos(emprestimo.Jogos))
-                    throw new Exception("Um empréstimo deve ter pelo menos um jogo.");
+                if (!ValidarSeJogoDisponivel(emprestimo.Jogos))
+                    throw new Exception("Existe livro que não está disponível na lista.");
 
                 return true;
             }
@@ -50,6 +51,11 @@ namespace WebAppCadeMeuJogo.Services
         public bool ValidarJogos(ICollection<Jogo> jogos)
         {
             return jogos.Count > 0;
+        }
+
+        public bool ValidarSeJogoDisponivel(ICollection<Jogo> jogos)
+        {
+            return jogos.Where(j => j.Disponivel).Count() == jogos.Count();
         }
     }
 }

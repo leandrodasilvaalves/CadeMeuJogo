@@ -229,6 +229,10 @@
     <Compile Include="Migrations\201803062308032_Correcao_campo_Datanascimento.Designer.cs">
       <DependentUpon>201803062308032_Correcao_campo_Datanascimento.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803070534584_Add_Column_Disponivel_EntityJogo.cs" />
+    <Compile Include="Migrations\201803070534584_Add_Column_Disponivel_EntityJogo.Designer.cs">
+      <DependentUpon>201803070534584_Add_Column_Disponivel_EntityJogo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Context\CadeMeuJogoContext.cs" />
@@ -340,6 +344,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803062308032_Correcao_campo_Datanascimento.resx">
       <DependentUpon>201803062308032_Correcao_campo_Datanascimento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803070534584_Add_Column_Disponivel_EntityJogo.resx">
+      <DependentUpon>201803070534584_Add_Column_Disponivel_EntityJogo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

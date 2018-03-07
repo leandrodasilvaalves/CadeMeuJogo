@@ -4,9 +4,11 @@ namespace WebAppCadeMeuJogo.Models.Entitys
 {
     public class Jogo : ClasseBase
     {
-        public string Nome { get; set; }        
+        public string Nome { get; set; }
+        public bool Disponivel { get; set; }
         public int CategoriaId { get; set; }
         public virtual Categoria Categoria { get; set; }
+        
 
         public virtual ICollection<Emprestimo> Emprestimos { get; set; }
 
