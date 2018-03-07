@@ -40,7 +40,7 @@ namespace WebAppCadeMeuJogo.Services
 
         public bool ValidarCPF(string cpf)
         {
-            if (cpf == String.Empty) return true; //O CPF não é obrigatório
+            if (cpf == String.Empty || cpf ==null) return true; //O CPF não é obrigatório
 
             int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
             int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };

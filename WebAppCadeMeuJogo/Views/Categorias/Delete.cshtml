@@ -36,7 +36,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Excluir" class="btn btn-default" /> |
-            @Html.ActionLink("Categorias", "Index")
+            @Html.ActionLink("Cancelar", "Index")
         </div>
     }
 
@@ -50,7 +50,6 @@
                 @Html.DisplayName("Data Cadastro")
             </th>
 
-            <th></th>
         </tr>
 
         @foreach (var item in Model.Jogos)
@@ -61,12 +60,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DataCadastro, "{0:dd/MM/yyyy}")
-                </td>
-
-                <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Excluir", "Delete", new { id = item.Id })
                 </td>
             </tr>
         }

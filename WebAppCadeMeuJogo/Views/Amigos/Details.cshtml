@@ -1,0 +1,92 @@
+﻿@model WebAppCadeMeuJogo.Models.Entitys.Amigo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhes do  Amigo</h2>
+<br />
+
+<div>
+    <h4>Amigo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Apelido: ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apelido)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Nome: ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Data de Nascimento: ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataNascimento)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("CPF: ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CPF)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Data de Cadastro: ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataCadastro)
+        </dd>
+        
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Amigos", "Index")
+</p>
+
+
+
+<h3>Histórico de Jogos Emprestados </h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Jogo")
+        </th>
+        
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Emprestimos)
+    {
+        foreach(var jogo in item.Jogos){
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => jogo.Nome)
+            </td>
+           
+
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Excluir", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+        }
+    }
+
+</table>

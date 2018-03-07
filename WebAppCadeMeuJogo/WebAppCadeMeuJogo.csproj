@@ -209,6 +209,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Containers\SimpleInjectorContainer.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AmigosController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -319,6 +320,11 @@
     <Content Include="Views\Categorias\Edit.cshtml" />
     <Content Include="Views\Categorias\Index.cshtml" />
     <Content Include="Views\Shared\_Invalid.cshtml" />
+    <Content Include="Views\Amigos\Create.cshtml" />
+    <Content Include="Views\Amigos\Delete.cshtml" />
+    <Content Include="Views\Amigos\Details.cshtml" />
+    <Content Include="Views\Amigos\Edit.cshtml" />
+    <Content Include="Views\Amigos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,89 @@
+﻿@model WebAppCadeMeuJogo.Models.Entitys.Amigo
+
+@{
+    ViewBag.Title = "Excluir";
+}
+
+<h2>Excluir Amigo?</h2>
+<br />
+<h3>Tem certeza de que deseja excluir este amigo?</h3>
+<div>
+    <h4>Amigo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Apelido: ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apelido)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Nome: ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Data de Nascimento: ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataNascimento)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("CPF: ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CPF)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Data de Cadastro: ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataCadastro)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-default" /> |
+            @Html.ActionLink("Cancelar", "Index")
+        </div>
+    }
+</div>
+
+<h3>Histórico de Jogos Emprestados </h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Jogo")
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model.Emprestimos)
+    {
+        foreach (var jogo in item.Jogos)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => jogo.Nome)
+                </td>
+
+            </tr>
+        }
+    }
+
+</table>
