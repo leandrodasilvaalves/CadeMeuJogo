@@ -27,8 +27,6 @@ $('#lstJogos').on('click', 'li > span', function () {
 });
 
 $('.datepicker').datepicker({
-    format: 'dd/mm/yyyy'
-}).on('dp.change', function (e) {
-
-    $(this).data('DatePicker').hide();
+    format: 'dd/mm/yyyy',
+    autoclose: true
 });
