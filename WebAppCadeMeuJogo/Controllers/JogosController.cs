@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -9,124 +10,132 @@ using WebAppCadeMeuJogo.Models.Entitys;
 
 namespace WebAppCadeMeuJogo.Controllers
 {
-    public class CategoriasController : Controller
+    public class JogosController : Controller
     {
-        private ICategoriaValidation _validation;
         private ICadeMeuJogoContext db;
+        private IJogoValidation _validation;
 
-        public CategoriasController(ICadeMeuJogoContext context, ICategoriaValidation validation)
+        public JogosController(ICadeMeuJogoContext context, IJogoValidation validation)
         {
-            this.db = context;
+            db = context;
             _validation = validation;
         }
 
-        // GET: Categorias
+        // GET: Jogos
         public ActionResult Index()
         {
-            return View(db.Categorias.Where(c => c.Ativo).ToList());
+            var jogos = db.Jogos.Where(x=> x.Ativo).Include(j => j.Categoria);
+            return View(jogos.ToList());
         }
 
-        // GET: Categorias/Details/5
+        // GET: Jogos/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categoria categoria = db.Categorias.Find(id);
-            if (categoria == null)
+            Jogo jogo = db.Jogos.Find(id);
+            if (jogo == null)
             {
                 return HttpNotFound();
             }
-            return View(categoria);
+            return View(jogo);
         }
 
-        // GET: Categorias/Create
+        // GET: Jogos/Create
         public ActionResult Create()
         {
+            ViewBag.CategoriaId = new SelectList(db.Categorias, "Id", "Nome");
             return View();
         }
 
-        // POST: Categorias/Create        
+        // POST: Jogos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nome,DataCadastro,Ativo")] Categoria categoria)
+        public ActionResult Create([Bind(Include = "Id,Nome,Disponivel,CategoriaId,DataCadastro,Ativo")] Jogo jogo)
         {
             try
             {
-                if (_validation.IsValid(categoria))
+                if (_validation.IsValid(jogo))
                 {
-                    db.Categorias.Add(categoria);
+                    jogo.Disponivel = true;
+                    db.Jogos.Add(jogo);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;               
+                ViewBag.Error = ex.Message;
             }
-            return View(categoria);
+
+            ViewBag.CategoriaId = new SelectList(db.Categorias, "Id", "Nome", jogo.CategoriaId);
+            return View(jogo);
         }
 
-        // GET: Categorias/Edit/5
+        // GET: Jogos/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categoria categoria = db.Categorias.Find(id);
-            if (categoria == null)
+            Jogo jogo = db.Jogos.Find(id);
+            if (jogo == null)
             {
                 return HttpNotFound();
             }
-            return View(categoria);
+            ViewBag.CategoriaId = new SelectList(db.Categorias, "Id", "Nome", jogo.CategoriaId);
+            return View(jogo);
         }
 
-        // POST: Categorias/Edit/5
+        // POST: Jogos/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nome,DataCadastro,Ativo")] Categoria categoria)
+        public ActionResult Edit([Bind(Include = "Id,Nome,Disponivel,CategoriaId,DataCadastro,Ativo")] Jogo jogo)
         {
             try
             {
-                if (_validation.IsValid(categoria))
+                if (_validation.IsValid(jogo))
                 {
-                    db.Entry(categoria).State = EntityState.Modified;
+                    db.Entry(jogo).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
             }
-            return View(categoria);
+
+            ViewBag.CategoriaId = new SelectList(db.Categorias, "Id", "Nome", jogo.CategoriaId);
+            return View(jogo);
         }
 
-        // GET: Categorias/Delete/5
+        // GET: Jogos/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categoria categoria = db.Categorias.Find(id);
-            if (categoria == null)
+            Jogo jogo = db.Jogos.Find(id);
+            if (jogo == null)
             {
                 return HttpNotFound();
             }
-            return View(categoria);
+            return View(jogo);
         }
 
-        // POST: Categorias/Delete/5
+        // POST: Jogos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Categoria categoria = db.Categorias.Find(id);
-            categoria.Ativo = false;
-            db.Entry(categoria).State = EntityState.Modified;
+            Jogo jogo = db.Jogos.Find(id);
+            jogo.Ativo = false;
+            db.Entry(jogo).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

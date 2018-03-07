@@ -20,6 +20,7 @@ namespace WebAppCadeMeuJogo.Containers
             container.Register<ICadeMeuJogoContext, CadeMeuJogoContext>();
             container.Register<ICategoriaValidation, CategoriaValidation>();
             container.Register<IAmigoValidation, AmigoValidation>();
+            container.Register<IJogoValidation, JogoValidation>();
 
             Registration registration = container.GetRegistration(typeof(CadeMeuJogoContext)).Registration;
             registration.SuppressDiagnosticWarning(DiagnosticType.DisposableTransientComponent,

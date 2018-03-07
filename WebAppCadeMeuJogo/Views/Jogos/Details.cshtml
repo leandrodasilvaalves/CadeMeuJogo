@@ -1,0 +1,71 @@
+﻿@model WebAppCadeMeuJogo.Models.Entitys.Jogo
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes do Jogo</h2>
+<br />
+
+<div>
+    <h4>Jogo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Categoria: ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Nome: ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Disponível ?")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Disponivel)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Data de cadastro")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataCadastro)
+        </dd>
+
+       
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Jogos", "Index")
+</p>
+
+<h3>Histórico de Empréstimos</h3>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayName("Amigo")
+        </th>
+    </tr>
+    @foreach (var item in Model.Emprestimos)
+    {
+        <tr>
+            <td>
+                @Html.Display(item.Amigo.Nome)
+            </td>
+
+        </tr>
+    }
+</table>
