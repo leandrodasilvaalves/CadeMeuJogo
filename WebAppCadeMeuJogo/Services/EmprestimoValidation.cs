@@ -24,8 +24,8 @@ namespace WebAppCadeMeuJogo.Services
                 if (!ValidarJogos(emprestimo.Jogos))
                     throw new Exception("Por favor, informe pelo menos um jogo para este empréstimo");
 
-                if (!ValidarSeJogoDisponivel(emprestimo.Jogos))
-                    throw new Exception("Existe livro que não está disponível na lista.");
+                if (!ValidarSeJogosDisponiveis(emprestimo.Jogos))
+                    throw new Exception("Existe Jogo na lista que não está disponível para empréstimo.");
 
                 return true;
             }
@@ -36,9 +36,9 @@ namespace WebAppCadeMeuJogo.Services
             }
         }
 
-        public bool ValidarDataInicio(DateTime incio)
+        public bool ValidarDataInicio(DateTime inicio)
         {
-            return incio.CompareTo(DateTime.Now) >= 0;
+            return inicio > DateTime.Now.AddDays(-1);
         }
 
         public bool ValidarDataFim(Emprestimo emprestimo)
@@ -56,9 +56,9 @@ namespace WebAppCadeMeuJogo.Services
             return jogos.Count > 0;
         }
 
-        public bool ValidarSeJogoDisponivel(ICollection<Jogo> jogos)
+        public bool ValidarSeJogosDisponiveis(ICollection<Jogo> jogos)
         {
-            return jogos.Where(j => j.Disponivel = false).Count() > 0;
+            return jogos.Where(j => j.Disponivel == false).Count() < 1;
         }
     }
 }

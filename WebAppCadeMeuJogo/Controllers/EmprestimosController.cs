@@ -64,6 +64,7 @@ namespace WebAppCadeMeuJogo.Controllers
                 IncluirJogosParaEmprestimo(emprestimo);
                 if (_validation.IsValid(emprestimo))
                 {
+                    MudarEstadoDoJogo(db, emprestimo.Jogos);
                     db.Emprestimos.Add(emprestimo);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -168,7 +169,6 @@ namespace WebAppCadeMeuJogo.Controllers
                     var jogosLista = db.Jogos.Where(j => idJogos.Contains(j.Id)).ToList();
                     foreach (var _jogo in jogosLista)
                     {
-                        MudarEstadoDoJogo(_jogo);
                         emprestimo.Jogos.Add(_jogo);
                     }
                 }
@@ -180,10 +180,13 @@ namespace WebAppCadeMeuJogo.Controllers
             }           
         }
 
-        public void MudarEstadoDoJogo(Jogo jogo)
+        public void MudarEstadoDoJogo(ICadeMeuJogoContext context, ICollection<Jogo> jogos)
         {
-            jogo.Disponivel = !jogo.Disponivel;
-            db.Entry(jogo).State = EntityState.Modified;
+            foreach (var jogo in jogos)
+            {
+                jogo.Disponivel = !jogo.Disponivel;
+                context.Entry(jogo).State = EntityState.Modified;
+            }
         }
 
     }

@@ -14,6 +14,6 @@ namespace WebAppCadeMeuJogo.Interfaces.Services
 
         bool ValidarJogos(ICollection<Jogo> jogos);
 
-        bool ValidarSeJogoDisponivel(ICollection<Jogo> jogos);
+        bool ValidarSeJogosDisponiveis(ICollection<Jogo> jogos);
     }
 }

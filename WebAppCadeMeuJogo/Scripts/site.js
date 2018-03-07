@@ -26,3 +26,9 @@ $('#lstJogos').on('click', 'li > span', function () {
     $(this).parent('li').remove();
 });
 
+$('.datepicker').datepicker({
+    format: 'dd/mm/yyyy'
+}).on('dp.change', function (e) {
+
+    $(this).data('DatePicker').hide();
+});

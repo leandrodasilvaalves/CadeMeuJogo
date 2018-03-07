@@ -57,7 +57,9 @@ namespace WebAppCadeMeuJogo.Testes.Services
         public void DeveraFalhar_SeAlgum_JogoIndisponivel()
         {
             var expected = false;
-            var result = validation.ValidarSeJogoDisponivel(EmprestimoMock.EmprestimoDemoInvalido().Jogos);
+            //Foi escolhido este mock para o teste porque sua lista de jogos possui jogos indisponíveis enquanto 
+            //o mock EmprestimoDemoInvalido possui uma lista vazia e por isso não pode ser utilizado neste teste
+            var result = validation.ValidarSeJogosDisponiveis(EmprestimoMock.EmprestimoDemoValido().Jogos);
             Assert.AreEqual(expected, result);
         }
 
