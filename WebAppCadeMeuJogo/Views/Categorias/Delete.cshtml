@@ -1,0 +1,76 @@
+﻿@model WebAppCadeMeuJogo.Models.Entitys.Categoria
+
+@{
+    ViewBag.Title = "Excluir";
+}
+
+<h2>Excluir Categorira?</h2>
+
+<h3>Tem certeza de que deseja excluir esta categoria?</h3>
+<br />
+<div>
+    <h4>Categoria: <strong>@Model.Nome</strong></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Nome da Categoria: ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Data de  Cadastro: ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataCadastro)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-default" /> |
+            @Html.ActionLink("Categorias", "Index")
+        </div>
+    }
+
+    <h3>Jogos da Categoria</h3>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Jogo")
+            </th>
+            <th>
+                @Html.DisplayName("Data Cadastro")
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Jogos)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataCadastro, "{0:dd/MM/yyyy}")
+                </td>
+
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
