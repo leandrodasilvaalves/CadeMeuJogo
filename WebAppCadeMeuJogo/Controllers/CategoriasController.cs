@@ -3,21 +3,21 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using WebAppCadeMeuJogo.Interfaces.Context;
 using WebAppCadeMeuJogo.Interfaces.Services;
-using WebAppCadeMeuJogo.Models.Context;
 using WebAppCadeMeuJogo.Models.Entitys;
-using WebAppCadeMeuJogo.Services;
 
 namespace WebAppCadeMeuJogo.Controllers
 {
     public class CategoriasController : Controller
     {
         private ICategoriaValidation _validation;
-        private CadeMeuJogoContext db = new CadeMeuJogoContext();
+        private ICadeMeuJogoContext db;
 
-        public CategoriasController()
+        public CategoriasController(ICadeMeuJogoContext db, ICategoriaValidation validation)
         {
-            _validation = new CategoriaValidation();
+            this.db = db;
+            _validation = validation;
         }
 
         // GET: Categorias
