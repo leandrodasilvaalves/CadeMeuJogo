@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebAppCadeMeuJogo.Models.Entitys.Emprestimo>
+
+@{
+    ViewBag.Title = "Empréstimos";
+}
+
+<h2>Empréstimos Dos Meus Jogos</h2>
+<br />
+
+<p>
+    @Html.ActionLink("Novo Empréstimo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Nome")
+        </th>
+        <th>
+            @Html.DisplayName("Date Inicial")
+        </th>
+        <th>
+            @Html.DisplayName("Data Final")
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amigo.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataInicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataFim)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Excluir", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

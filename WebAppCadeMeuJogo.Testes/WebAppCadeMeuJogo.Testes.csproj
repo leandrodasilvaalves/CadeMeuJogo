@@ -89,10 +89,13 @@
   <ItemGroup>
     <Compile Include="Mock\AmigoMock.cs" />
     <Compile Include="Mock\CategoriaMock.cs" />
+    <Compile Include="Mock\EmprestimoMock.cs" />
+    <Compile Include="Mock\JogoMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Services\TesteAmigoValidation.cs" />
     <Compile Include="Services\TesteCategoriaValidation.cs" />
+    <Compile Include="Services\TesteEmprestimoValidation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

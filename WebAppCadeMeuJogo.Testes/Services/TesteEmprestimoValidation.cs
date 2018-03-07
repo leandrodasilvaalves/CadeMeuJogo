@@ -1,0 +1,74 @@
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using WebAppCadeMeuJogo.Interfaces.Services;
+using WebAppCadeMeuJogo.Services;
+using WebAppCadeMeuJogo.Testes.Mock;
+
+namespace WebAppCadeMeuJogo.Testes.Services
+{
+    [TestClass]
+    public class TesteEmprestimoValidation
+    {
+        private IEmprestimoValidation validation;
+
+        [TestInitialize]
+        public void InicializarTeste()
+        {
+            validation = new EmprestimoValidation();
+        }
+
+        [TestMethod]
+        public void DeveraFalhar_SeDataInicio_MenorQueHoje()
+        {
+            var expected = false;
+            var result = validation.ValidarDataInicio(EmprestimoMock.EmprestimoDemoInvalido().DataInicio);
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void DeveraFalhar_SeDataFinal_MaiorQueDataInicial()
+        {
+            var expected = false;
+            var result = validation.ValidarDataFim(EmprestimoMock.EmprestimoDemoInvalido());
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void DeveraFalhar_SeAmigoId_NaoInformado()
+        {
+            var expected = false;
+            var result = validation.ValidarAmigo(EmprestimoMock.EmprestimoDemoInvalido().AmigoId);
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void DeveraFalhar_SeNenhum_JogoInformado()
+        {
+            var expected = false;
+            var result = validation.ValidarJogos(EmprestimoMock.EmprestimoDemoInvalido().Jogos);
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void DeveraFalhar_SeAlgum_JogoIndisponivel()
+        {
+            var expected = false;
+            var result = validation.ValidarSeJogoDisponivel(EmprestimoMock.EmprestimoDemoInvalido().Jogos);
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void DeveraFalhar_SeAlgumaPropriedadeDoObjejto_Invalida()
+        {
+            var expected = new Exception();
+            var result = validation.IsValid(EmprestimoMock.EmprestimoDemoInvalido());
+            Assert.AreEqual(expected, result);
+        }
+
+    }
+}

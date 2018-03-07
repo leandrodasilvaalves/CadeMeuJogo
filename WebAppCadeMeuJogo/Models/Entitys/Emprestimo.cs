@@ -6,6 +6,7 @@ namespace WebAppCadeMeuJogo.Models.Entitys
     public class Emprestimo : ClasseBase
     {
         public DateTime DataInicio { get; set; }
+
         public DateTime DataFim { get; set; }
 
         public int AmigoId { get; set; }
