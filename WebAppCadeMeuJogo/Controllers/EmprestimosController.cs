@@ -103,8 +103,10 @@ namespace WebAppCadeMeuJogo.Controllers
         {
             try
             {
+                IncluirJogosParaEmprestimo(emprestimo);
                 if (_validation.IsValid(emprestimo))
                 {
+                    MudarEstadoDoJogo(db, emprestimo.Jogos);
                     db.Entry(emprestimo).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -158,20 +160,12 @@ namespace WebAppCadeMeuJogo.Controllers
         private void IncluirJogosParaEmprestimo(Emprestimo emprestimo)
         {
             try
-            {
-                var _jogos = Request.Form["jogos"];
-                if (String.IsNullOrEmpty(_jogos))
-                    throw new Exception("Selecione pelo menos um jogo para o empréstimo");
-                
-                int[] idJogos = _jogos.Split(',').Select(Int32.Parse).ToArray();
-                if (idJogos.Count() > 0)
+            {               
+                var jogosLista = GetJogosFromRequest();
+                foreach (var _jogo in jogosLista)
                 {
-                    var jogosLista = db.Jogos.Where(j => idJogos.Contains(j.Id)).ToList();
-                    foreach (var _jogo in jogosLista)
-                    {
-                        emprestimo.Jogos.Add(_jogo);
-                    }
-                }
+                    emprestimo.Jogos.Add(_jogo);
+                }                
             }
             catch (Exception ex)
             {
@@ -180,7 +174,27 @@ namespace WebAppCadeMeuJogo.Controllers
             }           
         }
 
-        public void MudarEstadoDoJogo(ICadeMeuJogoContext context, ICollection<Jogo> jogos)
+        private ICollection<Jogo> GetJogosFromRequest()
+        {
+            try
+            {
+                var _jogos = Request.Form["jogos"];
+                if (String.IsNullOrEmpty(_jogos))
+                    throw new Exception("Selecione pelo menos um jogo para o empréstimo");
+
+                int[] idJogos = _jogos.Split(',').Select(Int32.Parse).ToArray();
+                return db.Jogos.Where(j => idJogos.Contains(j.Id)).ToList();
+                
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }    
+
+        }
+
+        private void MudarEstadoDoJogo(ICadeMeuJogoContext context, ICollection<Jogo> jogos)
         {
             foreach (var jogo in jogos)
             {
@@ -189,5 +203,6 @@ namespace WebAppCadeMeuJogo.Controllers
             }
         }
 
+        
     }
 }
