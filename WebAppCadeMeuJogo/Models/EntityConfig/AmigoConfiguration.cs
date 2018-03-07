@@ -24,7 +24,8 @@ namespace WebAppCadeMeuJogo.Models.EntityConfig
                 .IsRequired();
 
             Property(a => a.DataNascimento)
-                .HasColumnName("dataNascimento");
+                .HasColumnName("dataNascimento")
+                .IsRequired();
 
             Property(a => a.CPF)
                 .HasColumnName("cpf");

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace WebAppCadeMeuJogo.Models.Entitys
 {
@@ -16,9 +15,5 @@ namespace WebAppCadeMeuJogo.Models.Entitys
             Emprestimos = new List<Emprestimo>();
         }
 
-        public override bool IsValid()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

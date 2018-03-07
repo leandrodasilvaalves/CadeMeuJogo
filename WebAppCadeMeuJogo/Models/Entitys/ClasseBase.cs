@@ -8,6 +8,5 @@ namespace WebAppCadeMeuJogo.Models.Entitys
         public DateTime DataCadastro { get; set; }
         public bool Ativo { get; set; }
 
-        public abstract bool IsValid();
     }
 }

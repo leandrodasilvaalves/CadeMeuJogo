@@ -17,10 +17,5 @@ namespace WebAppCadeMeuJogo.Models.Entitys
         {
             Jogos = new List<Jogo>();
         }
-
-        public override bool IsValid()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

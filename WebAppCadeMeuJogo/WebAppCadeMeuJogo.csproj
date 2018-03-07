@@ -204,9 +204,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\Context\ICadeMeuJogoContext.cs" />
+    <Compile Include="Interfaces\Services\IAmigoValidation.cs" />
+    <Compile Include="Interfaces\Services\ICategoriaValidation.cs" />
+    <Compile Include="Interfaces\Services\IEmprestimoValidation.cs" />
+    <Compile Include="Interfaces\Services\IJogoValidation.cs" />
+    <Compile Include="Interfaces\Services\IValidationBase.cs" />
     <Compile Include="Migrations\201803062227097_Carga Inicial DataBase.cs" />
     <Compile Include="Migrations\201803062227097_Carga Inicial DataBase.Designer.cs">
       <DependentUpon>201803062227097_Carga Inicial DataBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803062308032_Correcao_campo_Datanascimento.cs" />
+    <Compile Include="Migrations\201803062308032_Correcao_campo_Datanascimento.Designer.cs">
+      <DependentUpon>201803062308032_Correcao_campo_Datanascimento.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -224,6 +234,11 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AmigoValidation.cs" />
+    <Compile Include="Services\CategoriaValidation.cs" />
+    <Compile Include="Services\EmprestimoValidation.cs" />
+    <Compile Include="Services\JogoValidation.cs" />
+    <Compile Include="Services\ValidationBase.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -305,6 +320,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201803062227097_Carga Inicial DataBase.resx">
       <DependentUpon>201803062227097_Carga Inicial DataBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803062308032_Correcao_campo_Datanascimento.resx">
+      <DependentUpon>201803062308032_Correcao_campo_Datanascimento.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

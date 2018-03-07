@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace WebAppCadeMeuJogo.Models.Entitys
 {
@@ -11,11 +10,6 @@ namespace WebAppCadeMeuJogo.Models.Entitys
         public Categoria()
         {
             Jogos = new List<Jogo>();
-        }
-
-        public override bool IsValid()
-        {
-            throw new NotImplementedException();
         }
     }
 }

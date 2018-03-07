@@ -56,14 +56,14 @@ namespace WebAppCadeMeuJogo.Migrations
             };
             var Amigos = new List<Amigo>
             {
-                new Amigo{ Nome="Ricardo"},
-                new Amigo{ Nome="Gleisson", Apelido="Narizinho"},
-                new Amigo{ Nome="Nilton", Apelido="Escuro"},
-                new Amigo{ Nome = "Jose Francisco", Apelido="Mannyn"},
-                new Amigo{ Nome = "Carlos Eduardo", Apelido="Cadu"},
-                new Amigo{ Nome= "Roberto", Apelido="Betão"},
-                new Amigo{ Nome="Gilson"},
-                new Amigo{Nome="Jefferson", Apelido="Papa"}
+                new Amigo{ Nome="Ricardo", DataNascimento = new DateTime(1980,10,2)},
+                new Amigo{ Nome="Gleisson", Apelido="Narizinho", DataNascimento = new DateTime(1996,2,3)},
+                new Amigo{ Nome="Nilton", Apelido="Escuro", DataNascimento = new DateTime(1995,8,21)},
+                new Amigo{ Nome = "Jose Francisco", Apelido="Mannyn", DataNascimento = new DateTime(1983,11,15)},
+                new Amigo{ Nome = "Carlos Eduardo", Apelido="Cadu", DataNascimento = new DateTime(1982,11,12)},
+                new Amigo{ Nome= "Roberto", Apelido="Betão", DataNascimento = new DateTime(1999,7,12)},
+                new Amigo{ Nome="Gilson", DataNascimento = new DateTime(1993,3,11)},
+                new Amigo{Nome="Jefferson", Apelido="Papa", DataNascimento = new DateTime(1998,9,17)}
             };
 
             context.Categorias.AddRange(Categorias);

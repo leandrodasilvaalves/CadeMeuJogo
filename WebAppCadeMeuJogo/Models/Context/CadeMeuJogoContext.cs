@@ -2,17 +2,18 @@
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
+using WebAppCadeMeuJogo.Interfaces.Context;
 using WebAppCadeMeuJogo.Models.EntityConfig;
 using WebAppCadeMeuJogo.Models.Entitys;
 
 namespace WebAppCadeMeuJogo.Models.Context
 {
-    public class CadeMeuJogoContext : DbContext
+    public class CadeMeuJogoContext : DbContext, ICadeMeuJogoContext
     {
         public DbSet<Amigo> Amigos { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Emprestimo> Emprestimos { get; set; }
-        public DbSet<Jogo> Jogos { get; set; }
+        public DbSet<Jogo> Jogos { get; set; }       
 
         public CadeMeuJogoContext() : base("cademeujogoConexao")
         {
