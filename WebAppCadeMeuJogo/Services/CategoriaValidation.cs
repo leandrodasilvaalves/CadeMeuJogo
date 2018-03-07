@@ -21,7 +21,7 @@ namespace WebAppCadeMeuJogo.Services
             }   
         }
 
-        private bool ValidarNomeCategoria(string nomeCategoria)
+        public bool ValidarNomeCategoria(string nomeCategoria)
         {
             return nomeCategoria.Length > 2;
         }

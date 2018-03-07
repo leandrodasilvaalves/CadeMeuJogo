@@ -28,17 +28,17 @@ namespace WebAppCadeMeuJogo.Services
             }
         }
 
-        private bool ValidarNome(string nome)
+        public bool ValidarNome(string nome)
         {
             return nome.Length > 2;
         }
 
-        private bool ValidarDataNascimento(DateTime dataNasc)
+        public bool ValidarDataNascimento(DateTime dataNasc)
         {
             return CalcularIdade(dataNasc) > 12;
         }
 
-        private bool ValidarCPF(string cpf)
+        public bool ValidarCPF(string cpf)
         {
             if (cpf == String.Empty) return true; //O CPF não é obrigatório
 

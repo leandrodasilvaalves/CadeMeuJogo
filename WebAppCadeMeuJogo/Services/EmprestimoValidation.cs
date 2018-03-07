@@ -32,22 +32,22 @@ namespace WebAppCadeMeuJogo.Services
             }
         }
 
-        private bool ValidarDataInicio(DateTime incio)
+        public bool ValidarDataInicio(DateTime incio)
         {
             return incio.CompareTo(DateTime.Now) >= 0;
         }
 
-        private bool ValidarDataFim(Emprestimo emprestimo)
+        public bool ValidarDataFim(Emprestimo emprestimo)
         {
             return emprestimo.DataInicio.CompareTo(emprestimo.DataFim) >= 0;
         }
 
-        private bool ValidarAmigo(int amigoId = 0)
+        public bool ValidarAmigo(int amigoId = 0)
         {
             return amigoId > 0;
         }
 
-        private bool ValidarJogos(ICollection<Jogo> jogos)
+        public bool ValidarJogos(ICollection<Jogo> jogos)
         {
             return jogos.Count > 0;
         }

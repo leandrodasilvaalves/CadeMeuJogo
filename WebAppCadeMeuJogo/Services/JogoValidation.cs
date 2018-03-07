@@ -24,7 +24,7 @@ namespace WebAppCadeMeuJogo.Services
             }
         }
 
-        private bool ValidarNomeJogo(string NomeJogo)
+        public bool ValidarNomeJogo(string NomeJogo)
         {
             return NomeJogo.Length >= 2;
         }
