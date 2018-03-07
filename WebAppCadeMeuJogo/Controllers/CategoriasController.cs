@@ -1,24 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
+using WebAppCadeMeuJogo.Interfaces.Services;
 using WebAppCadeMeuJogo.Models.Context;
 using WebAppCadeMeuJogo.Models.Entitys;
+using WebAppCadeMeuJogo.Services;
 
 namespace WebAppCadeMeuJogo.Controllers
 {
     public class CategoriasController : Controller
     {
+        private ICategoriaValidation _validation;
         private CadeMeuJogoContext db = new CadeMeuJogoContext();
+
+        public CategoriasController()
+        {
+            _validation = new CategoriaValidation();
+        }
 
         // GET: Categorias
         public ActionResult Index()
         {
-            return View(db.Categorias.ToList());
+            return View(db.Categorias.Where(c => c.Ativo).ToList());
         }
 
         // GET: Categorias/Details/5
@@ -42,20 +47,24 @@ namespace WebAppCadeMeuJogo.Controllers
             return View();
         }
 
-        // POST: Categorias/Create
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Categorias/Create        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Nome,DataCadastro,Ativo")] Categoria categoria)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Categorias.Add(categoria);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (_validation.IsValid(categoria))
+                {
+                    db.Categorias.Add(categoria);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
-
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;               
+            }
             return View(categoria);
         }
 
@@ -75,17 +84,22 @@ namespace WebAppCadeMeuJogo.Controllers
         }
 
         // POST: Categorias/Edit/5
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Nome,DataCadastro,Ativo")] Categoria categoria)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(categoria).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (_validation.IsValid(categoria))
+                {
+                    db.Entry(categoria).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch(Exception ex)
+            {
+                ViewBag.Error = ex.Message;
             }
             return View(categoria);
         }
@@ -111,7 +125,8 @@ namespace WebAppCadeMeuJogo.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Categoria categoria = db.Categorias.Find(id);
-            db.Categorias.Remove(categoria);
+            categoria.Ativo = false;
+            db.Entry(categoria).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
