@@ -40,7 +40,10 @@
         <td>
             @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Excluir", "Delete", new { id=item.Id })
+            @Html.ActionLink("Excluir", "Delete", new { id=item.Id }) |
+            <span class="btn btn-sm btn-default"> 
+                <i class="glyphicon glyphicon-refresh"></i>  
+                @Html.ActionLink("Devolver", "DevolverJogo", new { id = item.Id })</span>
         </td>
     </tr>
 }

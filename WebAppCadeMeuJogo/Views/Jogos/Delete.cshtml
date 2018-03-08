@@ -4,7 +4,7 @@
     ViewBag.Title = "Excluir";
 }
 
-<h2>Exclur Jogo?</h2>
+<h2>Excluir Jogo?</h2>
 <br />
 
 <h3>Tem certeza de que deseja excluir este jogo?</h3>
@@ -58,21 +58,3 @@
     }
 </div>
 
-
-<h3>Histórico de Empréstimos</h3>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayName("Amigo")
-        </th>
-    </tr>
-    @foreach (var item in Model.Emprestimos)
-    {
-        <tr>
-            <td>
-                @Html.Display(item.Amigo.Nome)
-            </td>
-
-        </tr>
-    }
-</table>

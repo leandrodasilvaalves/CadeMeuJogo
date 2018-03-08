@@ -1,0 +1,106 @@
+﻿@model WebAppCadeMeuJogo.Models.Entitys.Emprestimo
+
+@{
+    ViewBag.Title = "Devolver";
+}
+
+@using (Html.BeginForm())
+{
+    <h2>Devolver Jogo(s) ?</h2>
+    <br />
+    <div>
+        <h4>Empréstimo do <strong>@Html.DisplayFor(model => model.Amigo.Nome)</strong></h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayName("Nome: ")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Amigo.Nome)
+            </dd>
+            <dt>
+                @Html.DisplayName("Apelido: ")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Amigo.Apelido)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Data Inicial: ")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DataInicio)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Data final: ")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DataFim)
+            </dd>
+
+
+
+        </dl>
+
+
+
+    </div>
+   
+
+
+    <span id="btnDevolverTodos" class="btn btn-info"><i class="glyphicon glyphicon-resize-full"></i> Devolver Todos</span>
+    <button id="btnSalvar" class="btn btn-default" value="Salvar Modificações" type="submit" disabled>
+        <i class="glyphicon glyphicon-check"></i> Salvar Modificações
+    </button> 
+
+    <div class="row">
+        <div class="col-md-4">
+            <h3 class="text-danger">Jogos do Empréstimo</h3>
+            <table id="tblJogosEmprestimo" class="table table-responsive table-striped">
+                <thead>
+                    <tr>
+                        <th class="hidden">Id</th>
+                        <th>Jogo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var jogo in ViewBag.JogosEmprestados)
+                {
+                        <tr>
+                            <td  class="hidden">@jogo.Id</td>
+                            <td>@jogo.Nome</td>
+                            <td>
+                                <span class="right btn btn-sm btn-default btn-devolver-unit">
+                                    <i class="glyphicon glyphicon-refresh"></i> Devolver
+                                </span>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-4">
+            <h3 class="text-info">Jogos ParaDevolver</h3>
+            <table id="tblJogosDevolver" class="table table-responsive table-striped">
+                <thead>
+                    <tr>
+                        <th class="hidden">Id</th>
+                        <th>Jogo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

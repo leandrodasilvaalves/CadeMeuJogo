@@ -63,27 +63,3 @@
         </div>
     }
 </div>
-
-<h3>Histórico de Jogos Emprestados </h3>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("Jogo")
-        </th>
-
-    </tr>
-
-    @foreach (var item in Model.Emprestimos)
-    {
-        foreach (var jogo in item.Jogos)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => jogo.Nome)
-                </td>
-
-            </tr>
-        }
-    }
-
-</table>

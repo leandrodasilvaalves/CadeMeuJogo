@@ -52,20 +52,3 @@
     @Html.ActionLink("Jogos", "Index")
 </p>
 
-<h3>Histórico de Empréstimos</h3>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayName("Amigo")
-        </th>
-    </tr>
-    @foreach (var item in Model.Emprestimos)
-    {
-        <tr>
-            <td>
-                @Html.Display(item.Amigo.Nome)
-            </td>
-
-        </tr>
-    }
-</table>

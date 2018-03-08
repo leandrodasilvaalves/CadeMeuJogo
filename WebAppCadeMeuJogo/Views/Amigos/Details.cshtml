@@ -59,34 +59,3 @@
     @Html.ActionLink("Amigos", "Index")
 </p>
 
-
-
-<h3>Histórico de Jogos Emprestados </h3>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("Jogo")
-        </th>
-        
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model.Emprestimos)
-    {
-        foreach(var jogo in item.Jogos){
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => jogo.Nome)
-            </td>
-           
-
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Excluir", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-        }
-    }
-
-</table>

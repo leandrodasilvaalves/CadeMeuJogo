@@ -108,7 +108,7 @@ namespace WebAppCadeMeuJogo.Controllers
             try
             {
                 MudarDisponiblidadeDosJogos(db, GetJogos(db, emprestimo.Id));
-                RemoverJogos(db, emprestimo.Id);
+                RemoverJogosDoEmprestimo(db, emprestimo.Id);
                 db.SaveChanges();
                 var novosJogos = GetJogosFromRequest();
 
@@ -156,7 +156,7 @@ namespace WebAppCadeMeuJogo.Controllers
             try
             {
                 MudarDisponiblidadeDosJogos(db, GetJogos(db, emprestimo.Id));
-                RemoverJogos(db, emprestimo.Id);
+                RemoverJogosDoEmprestimo(db, emprestimo.Id);
                 emprestimo.Ativo = false;
                 db.Entry(emprestimo).State = EntityState.Modified;
                 db.SaveChanges();
@@ -171,6 +171,44 @@ namespace WebAppCadeMeuJogo.Controllers
             return View(emprestimo);
         }
 
+        [HttpGet]
+        public ActionResult DevolverJogo(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Emprestimo emprestimo = db.Emprestimos.Find(id);
+            ViewBag.JogosEmprestados = GetJogos(db, emprestimo.Id);
+            if (emprestimo == null)
+            {
+                return HttpNotFound();
+            }
+            return View(emprestimo);
+        }
+
+        [HttpPost]
+        public ActionResult DevolverJogo(Emprestimo emprestimo)
+        {
+            try
+            {
+                var jogosDevolucao = GetJogosFromRequest("chkJogosDevolucao");
+                MudarDisponiblidadeDosJogos(db, jogosDevolucao);
+                RemoverJogosDoEmprestimo(db, emprestimo.Id, jogosDevolucao);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+
+            }
+            catch (Exception ex)
+            {
+
+                ViewBag.Error = ex.Message;
+            }
+            ViewBag.JogosEmprestados = GetJogos(db, emprestimo.Id);
+            return View(emprestimo);
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -180,6 +218,10 @@ namespace WebAppCadeMeuJogo.Controllers
             base.Dispose(disposing);
         }
 
+
+        #region [ Metodos Privados ]
+
+        
         private void IncluirJogosParaEmprestimo(Emprestimo emprestimo, ICollection<Jogo> jogos)
         {
             try
@@ -205,11 +247,11 @@ namespace WebAppCadeMeuJogo.Controllers
             }           
         }
 
-        private ICollection<Jogo> GetJogosFromRequest()
+        private ICollection<Jogo> GetJogosFromRequest(string nameRequest = "chkJogos")
         {
             try
             {
-                var _jogos = Request.Form["chkJogos"];
+                var _jogos = Request.Form[nameRequest];
                 if (String.IsNullOrEmpty(_jogos))
                     throw new Exception("Selecione pelo menos um jogo para o empréstimo");
 
@@ -248,19 +290,41 @@ namespace WebAppCadeMeuJogo.Controllers
             }
             return listaJogo;
         }
-
-        private void RemoverJogos(ICadeMeuJogoContext context, int emprestimoId)
+                
+        private void RemoverJogosDoEmprestimo(ICadeMeuJogoContext context, int emprestimoId)
         {
             var emprestimosJogos = db.EmprestimosJogos;
             foreach (var empJg in emprestimosJogos)
             {
                 if (empJg.EmprestimoId == emprestimoId)
                 {
-                    empJg.Ativo = false;
                     db.Entry(empJg).State = EntityState.Deleted;
                 }
             }
         }
 
+        private void RemoverJogosDoEmprestimo(ICadeMeuJogoContext context, int emprestimoId, ICollection<Jogo> jogos)
+        {
+            var emprestimosJogos = db.EmprestimosJogos.Where(e=> e.EmprestimoId == emprestimoId);
+            foreach (var empJg in emprestimosJogos)
+            {
+                foreach(var jg in jogos)
+                {
+                    if(empJg.JogoId == jg.Id)
+                    {
+                        db.Entry(empJg).State = EntityState.Deleted;
+                    }
+                }
+                
+                //if(empJg.EmprestimoId == emprestimoId)
+                //{
+                //     if(jogos.FirstOrDefault(j => j.Id == empJg.JogoId).Id == empJg.JogoId)
+                //    db.Entry(empJg).State = EntityState.Deleted;
+                //}
+            }
+        }
+
+
+        #endregion
     }
 }
