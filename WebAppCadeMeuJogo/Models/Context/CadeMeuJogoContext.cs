@@ -18,6 +18,7 @@ namespace WebAppCadeMeuJogo.Models.Context
 
         public CadeMeuJogoContext() : base("cademeujogoConexao")
         {
+            Database.SetInitializer<CadeMeuJogoContext>(new InitializeDataBase());
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
