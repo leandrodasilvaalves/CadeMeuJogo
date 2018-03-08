@@ -10,7 +10,7 @@
 <p>
     @Html.ActionLink("Novo Jogo", "Create")
 </p>
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayName("Categoria")
@@ -21,7 +21,9 @@
         <th>
             @Html.DisplayName("Disponível")
         </th>
-        
+        <th>
+            @Html.DisplayName("Amigo")
+        </th>
        
         <th></th>
     </tr>
@@ -29,13 +31,29 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Categoria.Nome)
+            <b>@Html.DisplayFor(modelItem => item.Categoria.Nome)</b>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Nome)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Disponivel)
+            @if (item.Disponivel)
+            {
+                <span class="text-success"><i class="glyphicon glyphicon-ok"></i> Disponível</span>
+            }
+            else
+            {
+                <span class="text-danger"><i class="glyphicon glyphicon-remove"></i> Emprestado</span>
+            }
+        </td>
+        <td>
+            @if (!item.Disponivel)
+            {
+                var emp = item.EmprestimoJogo.LastOrDefault();
+                <a href="@Url.Action("Details","Emprestimos", new { @Id = emp.EmprestimoId})">
+                    <span>@emp.Emprestimo.Amigo.Nome</span>
+                </a>
+            }
         </td>
         
         <td>
