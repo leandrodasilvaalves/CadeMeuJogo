@@ -9,6 +9,7 @@ using WebAppCadeMeuJogo.Models.Entitys;
 
 namespace WebAppCadeMeuJogo.Controllers
 {
+    [Authorize]
     public class AmigosController : Controller
     {
         private ICadeMeuJogoContext db;

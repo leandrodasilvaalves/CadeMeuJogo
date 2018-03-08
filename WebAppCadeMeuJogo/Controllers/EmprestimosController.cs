@@ -11,6 +11,7 @@ using WebAppCadeMeuJogo.Models.Entitys;
 
 namespace WebAppCadeMeuJogo.Controllers
 {
+    [Authorize]
     public class EmprestimosController : Controller
     {
         private ICadeMeuJogoContext db;

@@ -9,6 +9,7 @@ using WebAppCadeMeuJogo.Models.Entitys;
 
 namespace WebAppCadeMeuJogo.Controllers
 {
+    [Authorize]
     public class CategoriasController : Controller
     {
         private ICategoriaValidation _validation;
