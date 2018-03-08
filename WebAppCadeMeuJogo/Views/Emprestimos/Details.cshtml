@@ -1,17 +1,24 @@
 ﻿@model WebAppCadeMeuJogo.Models.Entitys.Emprestimo
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes";
 }
 
-<h2>Details</h2>
-
+<h2>Detalhes do Emprestimo</h2>
+<br />
 <div>
-    <h4>Emprestimo</h4>
+    <h4>Emprestimo do <strong>@Model.Amigo.Nome</strong></h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Amigo.Apelido)
+            @Html.DisplayName("Nome: ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amigo.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayName("Apelido: ")
         </dt>
 
         <dd>
@@ -19,7 +26,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DataInicio)
+            @Html.DisplayName("Data Inicial: ")
         </dt>
 
         <dd>
@@ -27,32 +34,35 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DataFim)
+            @Html.DisplayName("Data final: ")
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.DataFim)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DataCadastro)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DataCadastro)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Ativo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Ativo)
-        </dd>
+        
 
     </dl>
+
+
+    
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Emprestimos", "Index")
 </p>
+
+<div class="form-group">
+    <div class="col-md-4">
+        <h3>Jogos do Empréstimo</h3>
+        <ul class="list-group" id="lstJogos">
+            @foreach (var jogo in ViewBag.JogosEmprestados)
+            {
+                <li class="list-group-item">
+                    @jogo.Nome
+                </li>
+            }
+        </ul>
+    </div>
+</div>

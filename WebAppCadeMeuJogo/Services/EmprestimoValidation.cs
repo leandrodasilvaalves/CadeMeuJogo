@@ -9,7 +9,7 @@ namespace WebAppCadeMeuJogo.Services
     public class EmprestimoValidation : ValidationBase<Emprestimo>, IEmprestimoValidation
     {
         public override bool IsValid(Emprestimo emprestimo)
-        {
+        {            
             try
             {
                 if (!ValidarDataInicio(emprestimo.DataInicio))
@@ -21,20 +21,14 @@ namespace WebAppCadeMeuJogo.Services
                 if (!ValidarAmigo(emprestimo.AmigoId))
                     throw new Exception("Informe um amigo para este empréstimo");
 
-                if (!ValidarJogos(emprestimo.Jogos))
-                    throw new Exception("Por favor, informe pelo menos um jogo para este empréstimo");
-
-                if (!ValidarSeJogosDisponiveis(emprestimo.Jogos))
-                    throw new Exception("Existe Jogo na lista que não está disponível para empréstimo.");
-
                 return true;
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
+        
 
         public bool ValidarDataInicio(DateTime inicio)
         {
@@ -51,14 +45,15 @@ namespace WebAppCadeMeuJogo.Services
             return amigoId > 0;
         }
 
-        public bool ValidarJogos(ICollection<Jogo> jogos)
+        public bool ValidarJogosParaEmprestimo(ICollection<Jogo> jogos)
         {
-            return jogos.Count > 0;
-        }
+            if(jogos.Count < 1)
+                throw new Exception("Por favor, informe pelo menos um jogo para este empréstimo");
+        
+            if(jogos.Where(j => j.Disponivel == false).Count() > 0)
+                throw new Exception("Existe Jogo na lista que não está disponível para empréstimo.");
 
-        public bool ValidarSeJogosDisponiveis(ICollection<Jogo> jogos)
-        {
-            return jogos.Where(j => j.Disponivel == false).Count() < 1;
+            return true;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace WebAppCadeMeuJogo.Testes.Mock
                 DataCadastro = DateTime.Now,
                 DataInicio = DateTime.Now,
                 DataFim = DateTime.Now.AddDays(10),
-                Jogos = JogoMock.JogosLista()
+                EmprestimosJogos = EmprestimoJogoMock.EmprestimoJogoLista()
             };
         }
 
@@ -30,7 +30,7 @@ namespace WebAppCadeMeuJogo.Testes.Mock
                 DataCadastro = DateTime.Now,
                 DataInicio = DateTime.Now.AddDays(-2),
                 DataFim = DateTime.Now.AddDays(-10),
-                Jogos = new List<Jogo>()
+                EmprestimosJogos = new List<EmprestimoJogo>()
             };
         }
     }

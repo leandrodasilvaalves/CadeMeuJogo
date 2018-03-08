@@ -33,18 +33,7 @@ namespace WebAppCadeMeuJogo.Models.EntityConfig
             HasRequired(e => e.Amigo)
                 .WithMany(a => a.Emprestimos)
                 .HasForeignKey(e => e.AmigoId);
-
-            HasMany(e => e.Jogos)
-                .WithMany(j => j.Emprestimos)
-                .Map(m =>
-               {
-                   m.ToTable("emprestimos_jogos");
-                   m.MapLeftKey("emprestimoId");
-                   m.MapRightKey("jogoId");
-               });
-
-
-
+            
         }
     }
 }

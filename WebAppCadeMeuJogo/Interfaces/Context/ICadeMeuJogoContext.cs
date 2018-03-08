@@ -9,6 +9,7 @@ namespace WebAppCadeMeuJogo.Interfaces.Context
         DbSet<Amigo> Amigos { get; set; }
         DbSet<Categoria> Categorias { get; set; }
         DbSet<Emprestimo> Emprestimos { get; set; }
+        DbSet<EmprestimoJogo> EmprestimosJogos { get; set; }
         DbSet<Jogo> Jogos { get; set; }
 
         void Dispose();

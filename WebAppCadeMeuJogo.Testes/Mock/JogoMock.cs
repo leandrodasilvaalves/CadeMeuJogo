@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebAppCadeMeuJogo.Models.Entitys;
 
 namespace WebAppCadeMeuJogo.Testes.Mock
@@ -24,6 +21,11 @@ namespace WebAppCadeMeuJogo.Testes.Mock
                 new Jogo{ Id = 8, Nome = "Call of Duty: Black Ops", Disponivel = true, CategoriaId = 2, DataCadastro = DateTime.Now, Ativo = true},
                 new Jogo{ Id = 9, Nome = "Grand Theft Auto V", Disponivel = true, CategoriaId = 2, DataCadastro = DateTime.Now, Ativo = true}
             };
+        }
+
+        public static ICollection<Jogo> JogoListaVazia()
+        {
+            return new List<Jogo>();
         }
     }
 }

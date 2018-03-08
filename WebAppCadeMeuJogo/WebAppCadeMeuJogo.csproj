@@ -236,17 +236,23 @@
     <Compile Include="Migrations\201803070534584_Add_Column_Disponivel_EntityJogo.Designer.cs">
       <DependentUpon>201803070534584_Add_Column_Disponivel_EntityJogo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803072132019_Correcao relacionamento Emprestimo_Jogo.cs" />
+    <Compile Include="Migrations\201803072132019_Correcao relacionamento Emprestimo_Jogo.Designer.cs">
+      <DependentUpon>201803072132019_Correcao relacionamento Emprestimo_Jogo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Context\CadeMeuJogoContext.cs" />
     <Compile Include="Models\EntityConfig\AmigoConfiguration.cs" />
     <Compile Include="Models\EntityConfig\CategoriaConfiguration.cs" />
     <Compile Include="Models\EntityConfig\EmprestimoConfiguration.cs" />
+    <Compile Include="Models\EntityConfig\EmprestimoJogoConfiguration.cs" />
     <Compile Include="Models\EntityConfig\JogoConfiguration.cs" />
     <Compile Include="Models\Entitys\Amigo.cs" />
     <Compile Include="Models\Entitys\Categoria.cs" />
     <Compile Include="Models\Entitys\ClasseBase.cs" />
     <Compile Include="Models\Entitys\Emprestimo.cs" />
+    <Compile Include="Models\Entitys\EmprestimoJogo.cs" />
     <Compile Include="Models\Entitys\Jogo.cs" />
     <Compile Include="Models\Entitys\Pessoa.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -542,6 +548,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803070534584_Add_Column_Disponivel_EntityJogo.resx">
       <DependentUpon>201803070534584_Add_Column_Disponivel_EntityJogo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803072132019_Correcao relacionamento Emprestimo_Jogo.resx">
+      <DependentUpon>201803072132019_Correcao relacionamento Emprestimo_Jogo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

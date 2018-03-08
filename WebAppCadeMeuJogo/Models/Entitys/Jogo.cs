@@ -10,11 +10,11 @@ namespace WebAppCadeMeuJogo.Models.Entitys
         public virtual Categoria Categoria { get; set; }
         
 
-        public virtual ICollection<Emprestimo> Emprestimos { get; set; }
+        public virtual ICollection<EmprestimoJogo> EmprestimoJogo { get; set; }
 
         public Jogo()
         {
-            Emprestimos = new List<Emprestimo>();
+            EmprestimoJogo = new List<EmprestimoJogo>();
         }
 
     }

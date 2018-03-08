@@ -46,7 +46,7 @@
         <div class="form-group">
             @Html.Label("Jogos", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-3">
-                @Html.DropDownList("Jogos", null, new { @class = "form-control" })
+                @Html.DropDownList("Jogos", null, new { @class = "form-control", @placeholder="Selecione" })
             </div>
             <div class="col-md-5 text-left">
                 <span href="" class="btn btn-primary" id="btnIncluirJogo">Incluir Jogo</span>
@@ -56,10 +56,10 @@
             <div class="col-md-4">
                 <h3>Jogos do Empréstimo</h3>
                 <ul class="list-group" id="lstJogos">
-                    @foreach(var jogo in Model.Jogos)
+                    @foreach(var jogo in ViewBag.JogosEmprestados)
                     {
                         <li class="list-group-item">@jogo.Nome
-                            <input name="jogos" id="jogos" type="checkbox" value="@jogo.Id" checked="checked" style="display:none;">
+                            <input name="chkJogos" id="chkJogos" type="checkbox" value="@jogo.Id" checked="checked" style="display:none;">
                                 <span class="badge"><i class="glyphicon glyphicon-remove"></i></span>
                         </li>
                     }

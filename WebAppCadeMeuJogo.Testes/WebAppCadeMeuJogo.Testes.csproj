@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="Mock\AmigoMock.cs" />
     <Compile Include="Mock\CategoriaMock.cs" />
+    <Compile Include="Mock\EmprestimoJogoMock.cs" />
     <Compile Include="Mock\EmprestimoMock.cs" />
     <Compile Include="Mock\JogoMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

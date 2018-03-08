@@ -15,12 +15,13 @@ $("#btnIncluirJogo").click(function () {
     if (!_jogoJaEstaIncluso()) {
         $("#lstJogos").append(
             '<li class="list-group-item">' + $("#Jogos option:selected").text() +
-            '<input name="jogos" id="jogos" type="checkbox" value="' +
+            '<input name="chkJogos" id="chkJogos" type="checkbox" value="' +
             $("#Jogos option:selected").val() +
             '" checked="checked" style="display:none;"/>' +
             '<span class="badge"><i class="glyphicon glyphicon-remove"></i></span></li >');
     }
 });
+
 
 $('#lstJogos').on('click', 'li > span', function () {
     $(this).parent('li').remove();

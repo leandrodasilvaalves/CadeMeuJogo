@@ -13,6 +13,7 @@ namespace WebAppCadeMeuJogo.Models.Context
         public DbSet<Amigo> Amigos { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Emprestimo> Emprestimos { get; set; }
+        public DbSet<EmprestimoJogo> EmprestimosJogos { get; set; }
         public DbSet<Jogo> Jogos { get; set; }       
 
         public CadeMeuJogoContext() : base("cademeujogoConexao")
@@ -44,6 +45,7 @@ namespace WebAppCadeMeuJogo.Models.Context
             modelBuilder.Configurations.Add(new JogoConfiguration());
             modelBuilder.Configurations.Add(new AmigoConfiguration());
             modelBuilder.Configurations.Add(new EmprestimoConfiguration());
+            modelBuilder.Configurations.Add(new EmprestimoJogoConfiguration());
         }
 
         public override int SaveChanges()
