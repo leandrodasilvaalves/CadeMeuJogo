@@ -1,0 +1,12 @@
+﻿
+body {
+    background-image: url('../Imagens/04.jpg');
+    background-position: top;
+    background-size: cover;
+    color:#b5a6a6;
+}
+
+.frm{
+    background-color:rgba(0, 0, 0, 0.6);
+    min-height:450px;
+}

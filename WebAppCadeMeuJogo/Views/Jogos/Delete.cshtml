@@ -7,7 +7,7 @@
 <h2>Excluir Jogo?</h2>
 <br />
 
-<h3>Tem certeza de que deseja excluir este jogo?</h3>
+<div class="alert alert-danger"><h3>Tem certeza de que deseja excluir este jogo?</h3></div>
 <div>
     <h4>Jogo: <strong>@Model.Nome</strong></h4>
     <hr />
@@ -52,8 +52,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Excluir" class="btn btn-danger" /> |
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
         </div>
     }
 </div>

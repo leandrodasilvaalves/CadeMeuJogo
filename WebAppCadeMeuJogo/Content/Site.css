@@ -22,3 +22,22 @@ select,
 textarea {
     max-width: 280px;
 }
+#bannerHome{
+    background-color:#000;
+    margin-top: 2em;
+    background-color: #000;
+    background-image: url('../Imagens/05.jpg');
+    background-position: center center;
+    background-size: cover;
+}
+#bannerTitle{
+    display:block;
+    background-color:rgba(0, 0, 0, 0.51);
+    padding:5px;
+    padding-left:3em;
+    color:#e5dcdc;
+}
+
+.thumbnail{
+    height:380px;
+}

@@ -7,7 +7,7 @@
 <h2>Categorias de Jogos</h2>
 
 <p>
-    @Html.ActionLink("Nova Categoria", "Create")
+    @Html.ActionLink("Nova Categoria", "Create", null, new { @class = "btn btn-info" })
 </p>
 <table class="table">
     <tr>
@@ -33,7 +33,7 @@
         <td>
             @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Excluir", "Delete", new { id=item.Id })
+            @Html.ActionLink("Excluir", "Delete", new { id=item.Id }, new { @class = "btn btn-sm btn-danger" })
         </td>
     </tr>
 }

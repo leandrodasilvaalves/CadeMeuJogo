@@ -266,6 +266,11 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Imagens\01.jpg" />
+    <Content Include="Imagens\02.jpg" />
+    <Content Include="Imagens\03.jpg" />
+    <Content Include="Imagens\04.jpg" />
+    <Content Include="Imagens\05.jpg" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-datepicker.standalone.css" />
